@@ -2,27 +2,24 @@
 global _start
 
 section .bss
-nums resb 5
+nums resb 5			; arr of 1 byte nums
 
 section .text
-_start: mov ecx, 5 
-	mov edi, nums
-	mov al, 49
-
-addNum: mov [edi], al
-	inc edi
-	inc eax
-        dec ecx
-        jnz addNum
+_start: mov ebx, 5		; amount of numbers to print
+	mov al, 52		; ascii code for first num in arr
 			
-	mov ecx, 5	
-	mov edi, nums
-
-printN: mov al, [edi]
-	PUTCHAR al
-	inc edi
-	dec ecx
-	jnz printN	
-
-	PUTCHAR 10
-        FINISH
+addNum: mov [nums+ecx], al	; put number inside nums arr
+	inc eax			; get ascii of next number
+        inc ecx			; inc ecx
+	cmp ecx, ebx		; compare current iteration with total amount of nums
+        jl addNum		; if less than total start from "addNum" again
+			
+	mov edi, nums		; move address of nums to edi
+printN: mov al, [edi]		; move num from arr to al
+	PUTCHAR al		; print current number
+	PUTCHAR 32		; print space
+	inc edi			; put address of the next RAM cell into edi
+	loop printN		; dec ecx and if zero jump to "printN"
+			
+	PUTCHAR 10		; print end of line symbol
+        FINISH			; sys call for exit
