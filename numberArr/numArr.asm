@@ -14,11 +14,11 @@ addNum: mov [nums+ecx], al	; put number inside nums arr
 	cmp ecx, ebx		; compare current iteration with total amount of nums
         jl addNum		; if less than total start from "addNum" again
 			
-	mov edi, nums		; move address of nums to edi
-printN: mov al, [edi]		; move num from arr to al
+	mov esi, nums		; move address of nums to esi
+printN: mov al, [esi]		; move num from arr to al
 	PUTCHAR al		; print current number
 	PUTCHAR 32		; print space
-	inc edi			; put address of the next RAM cell into edi
+	inc esi			; put address of the next RAM cell into edi
 	loop printN		; dec ecx and if zero jump to "printN"
 			
 	PUTCHAR 10		; print end of line symbol
