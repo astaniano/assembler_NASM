@@ -1,0 +1,12 @@
+%1 %2 %3
+aa bb cc
+
+; positive rotate
+rotate 1
+%3 %1 %2
+aa bb cc
+
+; negative rotate
+rotate -1
+%2 %3 %1
+aa bb cc

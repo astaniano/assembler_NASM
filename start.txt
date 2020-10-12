@@ -1,0 +1,5 @@
+nasm -f elf stdOut.asm
+
+ld -m elf_i386 stdOut.o -o stdOut
+
+./stdOut
